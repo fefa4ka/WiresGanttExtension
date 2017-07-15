@@ -1,0 +1,33 @@
+{
+  "name": "Github Gantt",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Github gantt diagram implementation ",
+  "homepage_url": "http://github.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "contentSettings"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*"
+      ],
+      "css": [
+        "github.css"
+      ]
+    },
+    {
+      "matches": [
+        "https://github.com/*"
+      ],
+      "js": [
+        "jquery.js", "rest-client.js", "github.js"
+      ]
+    }
+  ]
+}

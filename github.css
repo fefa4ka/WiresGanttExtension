@@ -1,0 +1,7 @@
+.reponav-gantt {
+    cursor: pointer;
+}
+
+.reponav-gantt svg {
+    transform: rotate(-90deg);
+}
