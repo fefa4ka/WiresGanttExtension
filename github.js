@@ -1,3 +1,5 @@
+var token = '';
+
 chrome.extension.sendMessage({}, function(response) {
     // // jQuery init
     // var jq = document.createElement('script');
@@ -9,11 +11,6 @@ chrome.extension.sendMessage({}, function(response) {
     if (document.readyState === "complete") {
         clearInterval(readyStateCheckInterval);
         renderGanttNavigation();
-        // ----------------------------------------------------------
-        // This part of the script triggers when page is done loading
-        console.log("Heldasdaslo. This message was sent from scripts/inject.js");
-        // ----------------------------------------------------------
-
     }
     }, 10);
 
@@ -22,6 +19,9 @@ chrome.extension.sendMessage({}, function(response) {
     }
 
     window.onload = function() {
+        chrome.storage.sync.get('token', function(keys) {
+            token = keys.token;
+        });
         var titleEl = document.getElementsByTagName("title")[0];
         var docEl = document.documentElement;
 
@@ -64,12 +64,13 @@ function renderGanttNavigation() {
         $content.html('<h1>Gantt Diagram</h1>');
 
         api.on('request', function(xhr) {
-            xhr.setRequestHeader('Authorization', 'token 9a6a7c915d1c4a5e2f5b8df2a24783e2e6eec0f5');
+            xhr.setRequestHeader('Authorization', 'token ' + token);
         });
+
 
         api.res({ repos: 'releases' });
         api.repos(path).get().then(function(issues){
-            console.log(issues);
+
             for(var index in issues) {
                 var issue = issues[index];
                 $content.append($('<p/>').text(issue.title + ' — ' + issue.created_at));
