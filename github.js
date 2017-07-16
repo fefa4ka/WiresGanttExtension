@@ -49,7 +49,7 @@ chrome.extension.sendMessage({}, function(response) {
 
 function renderGanttNavigation() {
      // Add Gantt Link
-    var $project = $('.reponav-item[data-selected-links~="repo_project"]'),
+    var $project = $('.reponav-item[data-selected-links~="repo_issues"]'),
         $gantt = $('<a><svg aria-hidden="true" class="octicon octicon-project" height="16" version="1.1" viewBox="0 0 15 16" width="15"><path fill-rule="evenodd" d="M10 12h3V2h-3v10zm-4-2h3V2H6v8zm-4 4h3V2H2v12zm-1 1h13V1H1v14zM14 0H1a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1z"></path></svg> Gantt</a>').addClass('reponav-item reponav-gantt');
         $content = $('.repository-content');
 
@@ -123,7 +123,9 @@ function renderGanttNavigation() {
         $content.append('<div class="gantt-container"><svg id="gantt"/></div>');
 
         api.on('request', function(xhr) {
-            xhr.setRequestHeader('Authorization', 'token ' + token);
+            if(token) {
+                xhr.setRequestHeader('Authorization', 'token ' + token);
+            }
         });
 
 
