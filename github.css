@@ -5,3 +5,7 @@
 .reponav-gantt svg {
     transform: rotate(-90deg);
 }
+
+.gantt-container {
+    overflow: scroll;
+}

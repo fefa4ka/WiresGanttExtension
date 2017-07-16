@@ -31,7 +31,7 @@
         "https://github.com/*"
       ],
       "js": [
-        "jquery.js", "rest-client.js", "github.js"
+        "jquery.js", "rest-client.js", "moment.js", "snap.svg.js", "frappe-gantt.js", "github.js"
       ]
     }
   ]
